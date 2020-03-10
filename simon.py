@@ -36,7 +36,7 @@ def bytes2human(n):
     # https://www.reddit.com/r/Python/comments/5xukpd/-/dem5k12/
     symbols = (' B', ' KiB', ' MiB', ' GiB', ' TiB', ' PiB', ' EiB', ' ZiB',
                ' YiB')
-    i = math.floor(math.log(abs(n)+1, 2) / 10)
+    i = int(math.floor(math.log(abs(n)+1, 2) / 10))
     return '%.1f%s' % (n/2**(i*10), symbols[i])
 
 
@@ -150,14 +150,14 @@ class Simon(NSApplication):
             *reversed(max_mem)))
 
         # Update title
-        self.statusItem.setTitle_('\u2235 {:04.1f}%'.format(cpu_usage))
+        self.statusItem.setTitle_(u'\u2235 {:04.1f}%'.format(cpu_usage))
 
     def _setup_menuBar(self):
         statusBar = NSStatusBar.systemStatusBar()
         self.statusItem = statusBar.statusItemWithLength_(-1)
         self.menuBar = NSMenu.alloc().init()
 
-        self.statusItem.setTitle_('\u2235')
+        self.statusItem.setTitle_(u'\u2235')
 
         # Labels/buttons
         self.SYSTEM = NSMenuItem.alloc().initWithTitle_action_keyEquivalent_(
